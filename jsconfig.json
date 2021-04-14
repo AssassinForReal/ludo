@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "checkJs": true,
+    "rootDir": "src/static"
+  },
+  "include": ["src/static"]
+}

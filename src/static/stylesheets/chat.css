@@ -1,0 +1,27 @@
+.chat-outer {
+  flex: 1;
+  background-color: #1e1e1e;
+  margin-bottom: 1rem;
+  overflow-y: scroll;
+  scrollbar-color: #333 transparent;
+  scrollbar-width: thin;
+}
+
+.chat-footer {
+  display: flex;
+}
+
+.chat-footer input {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+#chat > div {
+  margin: 0.5rem;
+}
+
+#chat-wrapper .wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

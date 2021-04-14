@@ -1,0 +1,94 @@
+.lobby-main {
+  display: flex;
+  height: 50vh
+}
+
+.lobby-players-wrapper {
+  width: 240px;
+}
+
+.lobby-players-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #666;
+  font-weight: bold;
+}
+
+.lobby-chat-wrapper {
+  margin-left: 1rem;
+  width: 400px;
+  height: 100%;
+}
+
+.lobby-chat-wrapper .wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lobby-room-link-wrapper {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.lobby-room-link {
+  flex: 1;
+  background-color: #252525;
+  color: #eee;
+  border: 2px solid #2a2a2a;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  text-align: center;
+  font-family: monospace;
+}
+
+.btn-lobby-leave {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.animation-bounce {
+  animation-name: animation-bounce;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+}
+
+.player {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.player-name {
+  flex: 1;
+}
+
+.player-status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #444;
+}
+
+.player-ready {
+  background-color: rgb(19, 199, 19);
+}
+
+.btn-lobby-lock-in {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@keyframes animation-bounce {
+  from {
+    color: inherit;
+  }
+  50% {
+    color: rgb(87, 126, 255);
+  }
+  to {
+    color: inherit;
+  }
+}

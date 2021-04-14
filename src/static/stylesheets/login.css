@@ -1,0 +1,26 @@
+.login-form-wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.login-form .btn {
+  margin-top: 1rem;
+}
+
+.login-form input {
+  text-align: center;
+}
+
+#username-error {
+  text-align: center;
+  margin-top: 1rem;
+  display: none;
+  color: red;
+}

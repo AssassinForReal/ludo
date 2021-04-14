@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludo</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="shortcut icon" href="/images/favicon.png">
+</head>
+
+<body>
+  <div id="app-root"></div>
+
+  <template id="page-login">
+    <div class="wrapper">
+      <div class="login-form-wrapper">
+        <div class="login-form">
+          <input type="text" id="input-username" placeholder="Your name">
+          <button class="btn btn-primary" id="btn-play">Play</button>
+          <button class="btn" id="btn-private-room">Create private room</button>
+          <div id="username-error"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="page-lobby">
+    <div class="lobby-wrapper">
+
+      <div class="lobby-main">
+        <div class="lobby-players-wrapper">
+          <div class="wrapper">
+            <div class="lobby-players-title">Players</div>
+            <div class="lobby-players" id="lobby-players"></div>
+          </div>
+
+          <button class="btn btn-lobby-lock-in" id="btn-lobby-lock-in">Lock in</button>
+          <button class="btn btn-danger btn-lobby-leave" id="btn-lobby-leave">Leave</button>
+        </div>
+        <div class="lobby-chat-wrapper" id="lobby-chat-wrapper"></div>
+      </div>
+
+      <div class="lobby-footer">
+        <div class="lobby-room-link-wrapper">
+          <div class="lobby-room-link" id="lobby-room-link"></div>
+          <button class="btn" id="btn-copy-lobby-room-link">Copy</button>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+  <template id="page-in-game">
+    <div class="game-wrapper">
+      <div class="game-heading" id="game-heading"></div>
+      <div class="board-chat-wrapper">
+        <div class="board-wrapper" id="board-wrapper">
+          <canvas id="canvas" width="580" height="580"></canvas>
+          <div class="player-holder player-red-holder" data-color="red"></div>
+          <div class="player-holder player-blue-holder" data-color="blue"></div>
+          <div class="player-holder player-yellow-holder" data-color="yellow"></div>
+          <div class="player-holder player-green-holder" data-color="green"></div>
+        </div>
+        <div class="controls-chat-wrapper">
+          <div class="wrapper controls-wrapper">
+            <div class="dice-wrapper">
+              <img src="/images/dice/1.png" id="dice-preview" alt="Dice preview" width="60" height="60" style="visibility: hidden;">
+              <button class="btn" id="btn-roll-dice" style="display: none;">Roll the dice</button>
+            </div>
+            <div class="timer" id="timer">0</div>
+          </div>
+          <div id="chat-wrapper"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="component-chat">
+    <div class="wrapper" id="chat-root">
+      <div class="chat-outer" id="chat-outer">
+        <div id="chat"></div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="chat-message" placeholder="Message">
+        <button class="btn btn-primary" id="btn-chat-send">Send</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="/javascripts/main.js" type="module"></script>
+</body>
+
+</html>
