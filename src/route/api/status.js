@@ -17,6 +17,15 @@ module.exports = router => {
   
       if (room && !room.hasEnded()) {
         result.room = room.toNetworkObject()
+
+        if (room.currentPlayer === player) {
+          const moves = room.getPossibleMoves()
+
+          player.queueEvent({
+            name: 'possible-moves',
+            moves
+          })
+        }
       }
     }
 

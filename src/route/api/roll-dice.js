@@ -19,7 +19,7 @@ module.exports = router => {
     if (!room.currentPlayer || room.currentPlayer.id !== player.id || room.diceRolled)
       return error(res, 'Player not allowed')
 
-    room.rollDice(parseInt(req.query.n))
+    room.rollDice()
     return success(res)
   })
 }

@@ -162,8 +162,9 @@ class Room {
     })
   }
 
-  rollDice(debug = 0) {
-    const number = debug ? debug : Random.randomInt(1, 6)
+  rollDice() {
+    const number = Random.randomInt(1, 6)
+    
     this.dispatchEvent({
       name: 'dice-drawn-number',
       number

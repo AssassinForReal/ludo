@@ -48,7 +48,7 @@ export default class PageInGame extends Page {
       this.componentChat.rootRef = this.component('chat')
       this.componentChat.mount(this.chatWrapperRef)
     }
-    
+
     this.counterRefs = {}
     this.counterVisRef = null
     this.possibleMoves = {}
@@ -69,8 +69,18 @@ export default class PageInGame extends Page {
     }
 
     this.pollTask = setInterval(this.pollEvents, 1000)
-    this.timerTime = 0
-    this.timerTask = null
+
+    if (this.room.roundTime) {
+      this.startTimer(parseInt(this.room.roundTime))
+    } else {
+      this.timerTime = 0
+      this.timerTask = null
+    }
+
+    if (this.room.diceNumber) {
+      this.onDiceDrawnNumber({ number: this.room.diceNumber })
+    }
+
     this.pollEvents()
   }
 
@@ -127,23 +137,23 @@ export default class PageInGame extends Page {
       counterRef.dataset.playerId = player.id
       counterRef.dataset.counterId = id
       this.boardWrapperRef.appendChild(counterRef)
-      
+
       if (player.id === this.player.id) {
         this.counterRefs[id] = counterRef
 
         counterRef.addEventListener('mouseover', () => {
           const move = this.possibleMoves[id]
           if (!move) return
-          
+
           this.counterVisRef.style.left = move.x + 'px'
           this.counterVisRef.style.top = move.y + 'px'
           this.counterVisRef.style.display = 'block'
         })
-  
+
         counterRef.addEventListener('mouseout', () => {
           this.counterVisRef.style.display = 'none'
         })
-  
+
         counterRef.addEventListener('click', () => {
           this.onCounterClick(id)
         })
@@ -169,8 +179,7 @@ export default class PageInGame extends Page {
   /**
    * @param {object} event 
    */
-  onDiceDrawnNumber(event) {
-    const { number } = event
+  onDiceDrawnNumber({ number }) {
     this.dicePreviewRef.src = `/images/dice/${number}.png`
     this.dicePreviewRef.style.visibility = 'visible'
     VoiceEngine.speak(number)
@@ -225,7 +234,7 @@ export default class PageInGame extends Page {
     const counterRef = [...document.querySelectorAll(`.counter`)]
       .find(ref => ref.dataset.counterId == counterId && ref.dataset.playerId == playerId)
     if (!counterRef) return
-    
+
     counterRef.style.left = position.x + 'px'
     counterRef.style.top = position.y + 'px'
   }
@@ -242,6 +251,16 @@ export default class PageInGame extends Page {
   updateTimer = () => {
     this.timerRef.textContent = this.timerTime.toString()
     this.timerTime = Math.max(this.timerTime - 1, 0)
+  }
+
+  /**
+   * @param {number} time 
+   */
+  startTimer = (time) => {
+    if (this.timerTask) clearInterval(this.timerTask)
+    this.timerTime = time
+    this.timerTask = setInterval(this.updateTimer, 1000)
+    this.updateTimer()
   }
 
   pollEvents = async () => {
@@ -282,10 +301,8 @@ export default class PageInGame extends Page {
             break
           }
           case 'start-timer': {
-            if (this.timerTask) clearInterval(this.timerTask)
-            this.timerTime = event.time
-            this.timerTask = setInterval(this.updateTimer, 1000)
-            this.updateTimer()
+            this.startTimer(event.time)
+            break
           }
         }
       }
